@@ -1,0 +1,17 @@
+function generarPassword() {
+    const mayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const minus = "abcdefghijklmnopqrstuvwxyz";
+    const digitos = "0123456789";
+    const especiales = "@#$%&()=?¿*+[]{}";
+
+    function randomChars(chars, length) {
+        return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
+    }
+
+    return randomChars(mayus, 2) +
+           randomChars(minus, 2) +
+           randomChars(digitos, 2) +
+           randomChars(especiales, 2);
+}
+
+console.log(generarPassword());
