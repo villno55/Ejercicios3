@@ -1,17 +1,24 @@
-function generarPassword() {
-    const mayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const minus = "abcdefghijklmnopqrstuvwxyz";
-    const digitos = "0123456789";
-    const especiales = "@#$%&()=?¿*+[]{}";
+function generarClave() {
+    let letrasMayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let letrasMinus = "abcdefghijklmnopqrstuvwxyz";
+    let numeros = "0123456789";
+    let simbolos = "@#$%&()=?¿*+[]{}";
 
-    function randomChars(chars, length) {
-        return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
+    function obtenerAleatorio(cadena, cantidad) {
+        let resultado = "";
+        for (let i = 0; i < cantidad; i++) {
+            let indice = Math.floor(Math.random() * cadena.length);
+            resultado += cadena[indice];
+        }
+        return resultado;
     }
 
-    return randomChars(mayus, 2) +
-           randomChars(minus, 2) +
-           randomChars(digitos, 2) +
-           randomChars(especiales, 2);
+    let clave = obtenerAleatorio(letrasMayus, 2) +
+                obtenerAleatorio(letrasMinus, 2) +
+                obtenerAleatorio(numeros, 2) +
+                obtenerAleatorio(simbolos, 2);
+
+    return clave;
 }
 
-console.log(generarPassword());
+console.log(generarClave());
