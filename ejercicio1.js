@@ -1,24 +1,28 @@
-function generarClave() {
-    let letrasMayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let letrasMinus = "abcdefghijklmnopqrstuvwxyz";
-    let numeros = "0123456789";
-    let simbolos = "@#$%&()=?¿*+[]{}";
+const prompt = require("prompt-sync")();
 
-    function obtenerAleatorio(cadena, cantidad) {
-        let resultado = "";
-        for (let i = 0; i < cantidad; i++) {
-            let indice = Math.floor(Math.random() * cadena.length);
-            resultado += cadena[indice];
-        }
-        return resultado;
-    }
 
-    let clave = obtenerAleatorio(letrasMayus, 2) +
-                obtenerAleatorio(letrasMinus, 2) +
-                obtenerAleatorio(numeros, 2) +
-                obtenerAleatorio(simbolos, 2);
+function crearPassword() {
+  let letrasMayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let letrasMinus = "abcdefghijklmnopqrstuvwxyz";
+  let numeros = "0123456789";
+  let simbolos = "@#$%&()=?¿*+[]{}";
 
-    return clave;
+  function escogerCaracter(lista) {
+    let pos = Math.floor(Math.random() * lista.length);
+    return lista[pos];
+  }
+
+  let clave = "";
+  clave += escogerCaracter(letrasMayus);
+  clave += escogerCaracter(letrasMayus);
+  clave += escogerCaracter(letrasMinus);
+  clave += escogerCaracter(letrasMinus);
+  clave += escogerCaracter(numeros);
+  clave += escogerCaracter(numeros);
+  clave += escogerCaracter(simbolos);
+  clave += escogerCaracter(simbolos);
+
+  return clave;
 }
 
-console.log(generarClave());
+console.log("Contraseña generada:", crearPassword());
