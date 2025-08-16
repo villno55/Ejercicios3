@@ -5,3 +5,6 @@ function contarVocales(texto) {
 
 console.log(contarVocales("Hola Mundo"));
 
+//me fallo el prompt lo hize así para q sea más breve
+
+
