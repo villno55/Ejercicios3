@@ -56,4 +56,5 @@ consignar(c1.codigo, monto);
 let saca = parseInt(prompt("Cuánto saca?: "));
 retirar(c1.codigo, saca);
 
-console.log("Cuenta final:", verCuenta(c1.codigo));
+console.log("Cuenta finalb:", verCuenta(c1.codigo));
+
