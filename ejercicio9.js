@@ -11,4 +11,5 @@ function buscarPosicion(lista, valor) {
 let entrada = prompt("Ingrese elementos separados por coma: ");
 let lista = entrada.split(",");
 let valor = prompt("¿Qué valor desea buscar?: ");
-console.log("Posición:", buscarPosicion(lista, valor));
+console.log("Posición: ", buscarPosicion(lista, valor));
+
