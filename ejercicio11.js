@@ -18,4 +18,5 @@ function buscarCapital(pais) {
 }
 
 let pais = prompt("Escriba un país: ");
-console.log("Capital:", buscarCapital(pais));
+console.log("Capital: ", buscarCapital(pais));
+
