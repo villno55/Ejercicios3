@@ -15,8 +15,9 @@ function crearAlumno(nombre, notas) {
   };
 }
 
-let nombre = prompt("Nombre del alumno: ");
+let nombre = prompt("Nombre de alumno: ");
 let entrada = prompt("Notas separadas por coma: ");
 let notas = entrada.split(",").map(n => parseFloat(n));
 let alumno = crearAlumno(nombre, notas);
 console.log(alumno.nombre,"-> promedio:", alumno.promedio());
+
