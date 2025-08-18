@@ -17,7 +17,7 @@ function crearCuenta() {
   return cuenta;
 }
 
-function consignar(cod, plata) {
+function consigna(cod, plata) {
   for (let c of cuentas) {
     if (c.codigo === cod) {
       c.saldo = c.saldo + plata;
@@ -25,7 +25,7 @@ function consignar(cod, plata) {
   }
 }
 
-function retirar(cod, plata) {
+function retira(cod, plata) {
   for (let c of cuentas) {
     if (c.codigo === cod && c.saldo >= plata) {
       c.saldo = c.saldo - plata;
@@ -57,4 +57,5 @@ let saca = parseInt(prompt("Cuánto saca?: "));
 retirar(c1.codigo, saca);
 
 console.log("Cuenta finalb:", verCuenta(c1.codigo));
+
 
