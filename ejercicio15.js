@@ -4,58 +4,101 @@ let cuentas = [];
 let numCuenta = 1;
 
 function crearCuenta() {
-  let anio = new Date().getFullYear();
-  let codigo = anio + "-" + numCuenta;
-  numCuenta++;
+    let anio = new Date().getFullYear();
+    let codigo = `${anio}-${numCuenta}`;
+    let fecha = new Date().toLocaleDateString();
+    numCuenta++;
 
-  let cuenta = {
-    codigo: codigo,
-    saldo: 0
-  };
-
-  cuentas.push(cuenta);
-  return cuenta;
+    let cuenta = { codigo, fecha, saldo: 0 };
+    cuentas.push(cuenta);
+    console.log("Cuenta creada:", cuenta);
 }
 
-function consigna(cod, plata) {
-  for (let c of cuentas) {
-    if (c.codigo === cod) {
-      c.saldo = c.saldo + plata;
+function consignar(cod, monto) {
+    let cuenta = cuentas.find(c => c.codigo === cod);
+    if (!cuenta) {
+        console.log("La cuenta no existe");
+        return;
     }
-  }
+    cuenta.saldo += monto;
+    console.log(`Se consignaron $${monto} en la cuenta ${cod}. Saldo actual: $${cuenta.saldo}`);
 }
 
-function retira(cod, plata) {
-  for (let c of cuentas) {
-    if (c.codigo === cod && c.saldo >= plata) {
-      c.saldo = c.saldo - plata;
+function retirar(cod, monto) {
+    let cuenta = cuentas.find(c => c.codigo === cod);
+    if (!cuenta) {
+        console.log("La cuenta no existe");
+        return;
     }
-  }
+    if (cuenta.saldo < monto) {
+        console.log("Saldo insuficiente");
+        return;
+    }
+    cuenta.saldo -= monto;
+    console.log(`Se retiraron $${monto} de la cuenta ${cod}. Saldo actual: $${cuenta.saldo}`);
 }
 
 function verCuenta(cod) {
-  for (let c of cuentas) {
-    if (c.codigo === cod) {
-      return c;
+    let cuenta = cuentas.find(c => c.codigo === cod);
+    if (!cuenta) {
+        console.log("La cuenta no existe");
+        return;
     }
-  }
-  return "no existe";
+    console.log("Datos de la cuenta:", cuenta);
 }
 
 function verTodo() {
-  return cuentas;
+    if (cuentas.length === 0) {
+        console.log("Ninguna cuenta registrada");
+        return;
+    }
+    console.log("Listado de cuentas:");
+    cuentas.forEach(c => console.log(c));
 }
 
-// uso
-let c1 = crearCuenta();
-console.log("Se creó cuenta:", c1);
+function menu() {
+    let opcion;
+    do {
+        console.log(`
+MENÚ BANCO ADSO
+1. Crear Cuenta
+2. Consignar Cuenta
+3. Retirar Cuenta
+4. Consultar Cuenta Por Código
+6. Listar Cuentas
+7. Salir
+        `);
+        opcion = prompt("Ingresa Opción (1-7): ");
 
-let monto = parseInt(prompt("Cuánto mete a la cuenta?: "));
-consignar(c1.codigo, monto);
+        switch (opcion) {
+            case "1":
+                crearCuenta();
+                break;
+            case "2":
+                let codC = prompt("Ingresa el código de la cuenta: ");
+                let montoC = parseFloat(prompt("Ingresa el valor a consignar: "));
+                consignar(codC, montoC);
+                break;
+            case "3":
+                let codR = prompt("Ingresa el código de la cuenta: ");
+                let montoR = parseFloat(prompt("Ingresa el valor a retirar: "));
+                retirar(codR, montoR);
+                break;
+            case "4":
+                let codV = prompt("Ingresa el código de la cuenta: ");
+                verCuenta(codV);
+                break;
+            case "6":
+                verTodo();
+                break;
+            case "7":
+                console.log("Saliendo del sistema...");
+                break;
+            default:
+                console.log("Opción no válida");
+        }
 
-let saca = parseInt(prompt("Cuánto saca?: "));
-retirar(c1.codigo, saca);
+    } while (opcion !== "7");
+}
 
-console.log("Cuenta finalb:", verCuenta(c1.codigo));
-
-
+menu();
